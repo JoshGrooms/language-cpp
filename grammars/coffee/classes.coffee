@@ -82,7 +82,7 @@ usingDeclaration =
         ///
     beginCaptures:
         1: name: 'keyword.control.cpp';
-        2: name: 'variable.alias.cpp';
+        2: name: 'variable.name.alias.cpp';
         3: name: 'operator.character.assignment.cpp';
     end: /\;/;
     endCaptures: 'operator.character.line-terminator.cpp';
