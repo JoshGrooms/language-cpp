@@ -11,11 +11,14 @@ grammar =
     # Ordering is critical here
     patterns:
         [
-            require('./classes')
-            require('./comments')
-            require('./functions')
-            require('./literals')
             require('./preprocessor')
+            require('./comments')
+            require('./literals')
+
+            require('./operations')
+
+            require('./classes')
+            require('./functions')
 
             require('./minutiae')
             require('./keywords')

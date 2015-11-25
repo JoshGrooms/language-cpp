@@ -29,20 +29,6 @@ operators =
 
     name: 'operator.character.cpp';
 
-
-operatorWords =
-    match:
-        ///\b(
-            alignof |
-            delete  |
-            new     |
-            sizeof  |
-            typeid
-        )\b///
-
-    name: 'operator.word.cpp'
-
-
 enclosures =
     [
         {
@@ -71,4 +57,4 @@ enclosures =
         }
     ];
 
-module.exports = [ operators, operatorWords, enclosures ];
+module.exports = [ operators, enclosures ];

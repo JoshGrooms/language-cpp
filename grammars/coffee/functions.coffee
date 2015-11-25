@@ -4,26 +4,18 @@
 { Patterns, RXP } = require('./Utilities');
 
 
+
 # DEBLANK - Removes all whitespace from a string.
 String::deblank = ->
     return @replace(/(\s*|\r|\n)/gm, '');
 
 
 ## PATTERN ELEMENTS ##
-genericArgumentList =
-    begin: /\</;
-    beginCaptures: 'enclosure.generic.open.cpp';
-    end: /(\>)(?:(\s*[\&\*]\s*)+)?/;
-    endCaptures:
-        1: name: 'enclosure.generic.close.cpp';
-        2: name: 'operator.character.cpp';
-    patterns:
-        [
-            Patterns.QualifiedType('variable.argument.generic.cpp'),
-            Patterns.SimpleType('variable.argument.generic.cpp'),
-            Patterns.ListSeparator,
-        ]
 
+# FUNCTIONSUFFIX - A pattern that captures the tail end of any function declaration.
+#
+#   This pattern should only be used inside of other function declaration capturing patterns (see below). It is not
+#   sufficient on its own to capture function definitions as it only consistently recognizes the close parenthesis character.
 functionSuffix =
     end:
         ///
@@ -37,46 +29,9 @@ functionSuffix =
         4: name: 'keyword.qualifier.cpp';
         5: name: 'keyword.qualifier.cpp';
 
-functionSuffixLookbehind =
-    end:
-        '''
-            (?<=\\)) \\s*
-            (?:
-                \\s+
-                \\b(
-                    const       |
-                    final       |
-                    override
-                )\\b
-            )?
-            (?:
-                \\s+
-                \\b(
-                    const       |
-                    final       |
-                    override
-                )\\b
-            )?
-            (?:
-                \\s+
-                \\b(
-                    const       |
-                    final       |
-                    override
-                )\\b
-            )?
-        '''.deblank();
-
-    endCaptures:
-        1: name: 'keyword.qualifier.cpp';
-        2: name: 'keyword.qualifier.cpp';
-        3: name: 'keyword.qualifier.cpp';
 
 
-
-
-
-
+# FUNCTIONGENERICRETURN - Captures any function declaration that returns a generic type.
 functionGenericReturn =
     begin:
         ///
@@ -105,15 +60,20 @@ functionGenericReturn =
                     ///
                         (\>)
                         #{RXP.PointerOperation}
-                        \s* (\w+)
-                        \s* (\() \s*
+                        \s* (?: \b(\w+)\b(\:\:) )? \b(\w+)\b \s*
+                        (\() \s*
                     ///;
                 beginCaptures:
                     1: name: 'enclosure.generic.close.cpp';
                     2: name: 'keyword.qualifier.cpp';
                     3: name: 'operator.character.cpp';
-                    4: name: 'function.name.cpp';
-                    5: name: 'enclosure.group.open.cpp';
+
+
+                    4: name: 'type.name.cpp';
+                    5: name: 'operator.character.resolution.cpp';
+
+                    6: name: 'function.name.cpp';
+                    7: name: 'enclosure.group.open.cpp';
                 end: functionSuffix.end;
                 endCaptures: functionSuffix.endCaptures;
                 patterns:
@@ -124,18 +84,28 @@ functionGenericReturn =
                         Patterns.ListSeparator,
                     ];
             }
+            {
+                match:
+                    ///
+                        (\>)
+                        #{RXP.PointerOperation}
+                        \s* (\w+) \s*
+                    ///
+                beginCaptures:
+                    1: name: 'enclosure.generic.close.cpp';
+                    2: name: 'keyword.qualifier.cpp';
+                    3: name: 'operator.character.cpp';
+                    4: name: 'variable.name.cpp';
+            }
         ];
-
-
-
-
+# FUNCTIONPRIMITIVERETURN - Captures any function declaration that returns a primitive type.
 functionPrimitiveReturn =
     begin:
         ///
             #{RXP.FunctionQualifiers}
             #{RXP.PrimitiveType}
             #{RXP.PointerOperation}
-            \s* \b(\w+)\b \s*
+            \s* (?: \b(\w+)\b(\:\:) )? \b(\w+)\b \s*
             (\() \s*
         ///
     beginCaptures:
@@ -147,61 +117,32 @@ functionPrimitiveReturn =
         6: name: 'type.primitive.cpp';
         7: name: 'keyword.qualifier.cpp';
         8: name: 'operator.character.cpp';
-        9: name: 'function.name.cpp';
-        10: name: 'enclosure.group.open.cpp';
+
+        9: name: 'type.name.cpp';
+        10: name: 'operator.character.resolution.cpp';
+
+        11: name: 'function.name.cpp';
+        12: name: 'enclosure.group.open.cpp';
     end: functionSuffix.end;
     endCaptures: functionSuffix.endCaptures;
     name: 'function.declaration.primitive.cpp';
 
     patterns:
         [
-            Patterns.PrimitiveVariable('variable.argument.input.cpp', 'function.argument.input.cpp'),
-            Patterns.QualifiedVariable('variable.argument.input.cpp', 'function.argument.input.cpp'),
-            Patterns.SimpleVariable('variable.argument.input.cpp', 'function.argument.input.cpp'),
+            Patterns.PrimitiveVariable('variable.argument.input.cpp', 'function.argument.primitive.cpp'),
+            Patterns.QualifiedVariable('variable.argument.input.cpp', 'function.argument.qualified.cpp'),
+            Patterns.SimpleVariable('variable.argument.input.cpp', 'function.argument.simple.cpp'),
+            Patterns.SimpleType(),
             Patterns.ListSeparator,
         ];
-
-functionPrimitiveReturnNoInput =
-    match:
-        ///
-            #{RXP.FunctionQualifiers}
-            #{RXP.PrimitiveType}
-            #{RXP.PointerOperation}
-            \s* \b(\w+)\b \s*
-            (\() \s* (void)? \s* (\))
-            #{RXP.FunctionSuffixQualifiers}
-        ///
-    captures:
-        0: name: 'function.declaration.primitive.no-input.cpp';
-        1: name: 'keyword.qualifier.cpp';
-        2: name: 'keyword.qualifier.cpp';
-        3: name: 'keyword.qualifier.cpp';
-        4: name: 'keyword.qualifier.cpp';
-        5: name: 'keyword.qualifier.cpp';
-        6: name: 'type.primitive.cpp';
-        7: name: 'keyword.qualifier.cpp';
-        8: name: 'operator.character.cpp';
-        9: name: 'function.name.cpp';
-        10: name: 'enclosure.group.open.cpp';
-        11: name: 'type.primitive.cpp';
-        12: name: 'enclosure.group.close.cpp';
-        13: name: 'keyword.qualifier.cpp';
-        14: name: 'keyword.qualifier.cpp';
-        15: name: 'keyword.qualifier.cpp';
-        16: name: 'keyword.qualifier.cpp';
-
-
-
-
-
-
+# FUNCTIONSIMPLERETURN - Captures any function declaration that returns a non-primitive, unqualified type.
 functionSimpleReturn =
     begin:
         ///
             #{RXP.FunctionQualifiers}
             #{RXP.SimpleType}
             #{RXP.PointerOperation}
-            \s* \b(\w+)\b \s*
+            \s* (?: \b(\w+)\b(\:\:) )? \b(\w+)\b \s*
             (\() \s*
         ///
     beginCaptures:
@@ -212,8 +153,12 @@ functionSimpleReturn =
         5: name: 'type.name.cpp';
         6: name: 'keyword.qualifier.cpp';
         7: name: 'operator.character.cpp';
-        8: name: 'function.name.cpp';
-        9: name: 'enclosure.group.open.cpp';
+
+        8: name: 'type.name.cpp';
+        9: name: 'operator.character.resolution.cpp';
+
+        10: name: 'function.name.cpp';
+        11: name: 'enclosure.group.open.cpp';
     end: functionSuffix.end;
     endCaptures: functionSuffix.endCaptures;
     name: 'function.declaration.simple.cpp';
@@ -225,39 +170,9 @@ functionSimpleReturn =
             Patterns.SimpleVariable('variable.argument.input.cpp', 'function.argument.input.cpp'),
             Patterns.ListSeparator,
         ];
-
-functionSimpleReturnNoInput =
-    match:
-        ///
-            #{RXP.FunctionQualifiers}
-            #{RXP.SimpleType}
-            #{RXP.PointerOperation}
-            \s* \b(\w+)\b \s*
-            (\() \s* (void)? \s* (\))
-            #{RXP.FunctionSuffixQualifiers}
-        ///;
-    captures:
-        0: name: 'function.declaration.simple.no-input.cpp';
-        1: name: 'keyword.qualifier.cpp';
-        2: name: 'keyword.qualifier.cpp';
-        3: name: 'keyword.qualifier.cpp';
-        4: name: 'keyword.qualifier.cpp';
-        5: name: 'type.name.cpp';
-        6: name: 'keyword.qualifier.cpp';
-        7: name: 'operator.character.cpp';
-        8: name: 'function.name.cpp';
-        9: name: 'enclosure.group.open.cpp';
-        10: name: 'type.primitive.cpp';
-        11: name: 'enclosure.group.close.cpp';
-        12: name: 'keyword.qualifier.cpp';
-        13: name: 'keyword.qualifier.cpp';
-        14: name: 'keyword.qualifier.cpp';
-        15: name: 'keyword.qualifier.cpp';
-
-
-
-
-
+# FUNCTIONQUALIFIEDRETURN - Captures any function declaration that returns a qualified type.
+#
+#   The term 'qualified' here indicates the usage of the scope resolution operator ('::') in C++.
 functionQualifiedReturn =
     begin:
         ///
@@ -271,10 +186,10 @@ functionQualifiedReturn =
         4: name: 'keyword.qualifier.cpp';
         5: name: 'type.name.cpp';
         6: name: 'operator.character.resolution.cpp';
-    end: '(?<=[\;\{])';
-    # endCaptures:
-    #     1: name: 'operator.character.line-terminator.cpp';
-    #     2: name: 'enclosure.block.open.cpp';
+    end: '(?<=[\;\{])|(\;)|(\{)';
+    endCaptures:
+        1: name: 'operator.character.line-terminator.cpp';
+        2: name: 'enclosure.block.open.cpp';
     name: 'function.declaration.qualified.cpp';
     patterns:
         [
@@ -284,8 +199,11 @@ functionQualifiedReturn =
                     1: name: 'type.name.cpp';
                     2: name: 'operator.character.resolution.cpp';
             }
+
             functionGenericReturn,
             functionSimpleReturn,
+
+            Patterns.SimpleVariable(),
         ];
 
 
@@ -293,9 +211,7 @@ functionQualifiedReturn =
 module.exports =
 [
     functionGenericReturn,
-    functionPrimitiveReturnNoInput,
     functionPrimitiveReturn,
     functionQualifiedReturn,
-    functionSimpleReturnNoInput,
     functionSimpleReturn,
 ];

@@ -45,4 +45,15 @@ octals =
     captures:
         1: name: 'literal.integer.octal.cpp';
 
-module.exports = [ booleans, doubles, floats, hexadecimals, integers, octals ];
+
+strings =
+    begin: /(L|u8|u|U)?([\"\'])[^\(]/;
+    beginCaptures:
+        1: name: 'literal.string.qualifier.cpp';
+        2: name: 'enclosure.string.open.cpp';
+    end: /[\"\']/;
+    endCaptures: 'enclosure.string.close.cpp';
+    name: 'literal.string.cpp';
+
+
+module.exports = [ booleans, doubles, floats, hexadecimals, integers, octals, strings ];

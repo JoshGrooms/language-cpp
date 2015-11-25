@@ -33,6 +33,7 @@ keywordControls =
             if          |
             return      |
             switch      |
+            this        |
             try         |
             using       |
             while

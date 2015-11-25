@@ -56,6 +56,15 @@ RXP =
                 \\s+
             )?
         '''.deblank();
+    FunctionName:
+        '''
+            (?: \\b(\\w+)\\b (\\:\\:) )?
+            (?: \\b(\\w+)\\b (\\:\\:) )?
+            (?: \\b(\\w+)\\b (\\:\\:) )?
+            (?: \\b(\\w+)\\b (\\:\\:) )?
+            \\b(\\w+)\\b
+            \\s* (\\() \\s*
+        '''.deblank();
     FunctionSuffixQualifiers:
         '''
             (?:
@@ -94,22 +103,22 @@ RXP =
     PointerOperation:
         '''
             (?:
-                (?: \\b(const)\\b \\s*)?
-                (?: ([\\&\\*]+) )
+                (?: \\b(const)\\b )?
+                (?: \\s* ([\\&\\*]+) )
             )?
         '''.deblank();
     PrimitiveType:
         '''
             (?:
-                (
+                \\b(
                     long        |
                     short       |
                     signed      |
                     unsigned
-                )
+                )\\b
                 \\s+
             )?
-            (
+            \\b(
                 auto        |
                 bool        |
                 char        |
@@ -124,7 +133,7 @@ RXP =
                 uint        |
                 ulong       |
                 void
-            )
+            )\\b
         '''.deblank();
     QualifiedType:
         '''
@@ -226,13 +235,13 @@ Patterns =
             9: name: 'keyword.qualifier.cpp';
             10: name: 'operator.character.cpp';
     # PRIMITIVEVARIABLE - A pattern that captures a variable declaration of any primitive C or C++ type.
-    PrimitiveVariable: (varName = 'variable.name.cpp', groupName = 'variable.declaration.cpp') ->
+    PrimitiveVariable: (varName = 'variable.name.cpp', groupName = 'variable.declaration.primitive.cpp') ->
         match:
             ///
                 #{RXP.VariableQualifiers}
                 #{RXP.PrimitiveType}
                 #{RXP.PointerOperation}
-                \s* \b(\w+)\b
+                \s* \b(\w+)\b (?!\:)
             ///
         captures:
             1: name: 'keyword.qualifier.cpp';
@@ -257,7 +266,7 @@ Patterns =
             5: name: typeName;
             6: name: 'operator.character.resolution.cpp;'
     # QUALIFIEDVARIABLE - A pattern that captures any variable declaration containing a qualified type.
-    QualifiedVariable: (varName = 'variable.name.cpp', groupName = 'variable.declaration.cpp') ->
+    QualifiedVariable: (varName = 'variable.name.cpp', groupName = 'variable.declaration.qualified.cpp') ->
         begin:
             ///
                 #{RXP.VariableQualifiers}
@@ -280,21 +289,7 @@ Patterns =
             2: name: 'operator.character.cpp';
             3: name: varName;
         name: groupName;
-        patterns:
-            [
-                {
-                    match: RXP.QualifiedType;
-                    captures:
-                        1: name: 'type.name.cpp';
-                        2: name: 'operator.character.resolution.cpp';
-                }
-                {
-                    match: RXP.SimpleType;
-                    captures:
-                        1: name: 'type.name.cpp';
-                }
-
-            ];
+        patterns: [ Patterns.QualifiedType(), Patterns.SimpleType() ];
 
     SimpleType: (typeName = 'type.name.cpp') ->
         match: /// #{RXP.VariableQualifiers} #{RXP.SimpleType} #{RXP.PointerOperation} ///;
@@ -307,7 +302,7 @@ Patterns =
             6: name: 'keyword.qualifier.cpp';
             7: name: 'operator.character.cpp';
 
-    SimpleVariable: (varType = 'variable.name.cpp', groupType = 'variable.declaration.cpp') ->
+    SimpleVariable: (varType = 'variable.name.cpp', groupType = 'variable.declaration.simple.cpp') ->
         match:
             ///
                 #{RXP.VariableQualifiers}
@@ -342,7 +337,7 @@ genericTypeTemplate =
     begin:
         ///
             #{RXP.VariableQualifiers}
-            \s* \b(\w+)\b (\<)
+            \s* \b(\w+)\b \s* (\<)
         ///
     beginCaptures:
         1: name: 'keyword.qualifier.cpp';
