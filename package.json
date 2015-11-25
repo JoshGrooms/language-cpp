@@ -1,0 +1,16 @@
+{
+    "name":"language-cpp",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Enhanced C++ language support for Atom",
+    "repository": "",
+    "license": "MIT",
+    "engines": {
+        "atom": "*",
+        "node": "*"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "atom-syntax-tools": "^0.9.1"
+    }
+}

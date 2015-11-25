@@ -1,0 +1,3 @@
+'.source.c, .source.cpp':
+    'editor':
+        'commentStart': '//'

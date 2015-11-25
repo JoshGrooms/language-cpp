@@ -1,0 +1,1660 @@
+'fileTypes': [
+  'cpp'
+  'h'
+  'hpp'
+]
+'name': 'C++'
+'scopeName': 'source.cpp'
+'patterns': [
+  {
+    'match': '\\b(class|struct|enum)\\b\\s*(?:\\r?\\n?)(\\{)'
+    'captures':
+      '1':
+        'name': 'keyword.type.cpp'
+      '2':
+        'name': 'operator.block.open.cpp'
+    'name': 'type.declaration.anonymous.cpp'
+  }
+  {
+    'begin': '\\b(class)\\b\\s+'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.type.cpp'
+    'end': '(\\;)|(?=\\{)'
+    'endCaptures':
+      '1':
+        'name': 'operator.character.line-terminator.cpp'
+      '2':
+        'name': 'enclosure.block.open.cpp'
+    'name': 'type.declaration.class.cpp'
+    'patterns': [
+      {
+        'begin': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?\\s*\\b(\\w+)\\b(\\<)'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'enclosure.generic.open.cpp'
+        'end': '(\\>)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+        'endCaptures':
+          '1':
+            'name': 'enclosure.generic.close.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'operator.character.cpp'
+        'patterns': [
+          {
+            'match': '(\\w+)(\\:\\:)'
+            'captures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'variable.argument.generic.cpp'
+              '6':
+                'name': 'operator.character.resolution.cpp;.cpp'
+          }
+          {
+            'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+            'captures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'variable.argument.generic.cpp'
+              '6':
+                'name': 'keyword.qualifier.cpp'
+              '7':
+                'name': 'operator.character.cpp'
+          }
+          {
+            'match': '\\,'
+            'name': 'operator.character.separator.cpp'
+          }
+        ]
+      }
+      {
+        'match': '(\\w+)(\\:\\:)'
+        'captures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'operator.character.resolution.cpp;.cpp'
+      }
+      {
+        'begin': '(\\w+)\\s*(\\:)\\s*'
+        'beginCaptures':
+          '1':
+            'name': 'type.name.cpp'
+          '2':
+            'name': 'operator.character.inherit.cpp'
+        'end': '(\\,)|(?=\\{)'
+        'endCaptures':
+          '1':
+            'name': 'operator.character.separator.cpp'
+        'patterns': [
+          {
+            'match': 'private|protected|public'
+            'name': 'keyword.qualifier.access.cpp'
+          }
+          {
+            'begin': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?\\s*\\b(\\w+)\\b(\\<)'
+            'beginCaptures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'type.name.cpp'
+              '6':
+                'name': 'enclosure.generic.open.cpp'
+            'end': '(\\>)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+            'endCaptures':
+              '1':
+                'name': 'enclosure.generic.close.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'operator.character.cpp'
+            'patterns': [
+              {
+                'match': '(\\w+)(\\:\\:)'
+                'captures':
+                  '1':
+                    'name': 'keyword.qualifier.cpp'
+                  '2':
+                    'name': 'keyword.qualifier.cpp'
+                  '3':
+                    'name': 'keyword.qualifier.cpp'
+                  '4':
+                    'name': 'keyword.qualifier.cpp'
+                  '5':
+                    'name': 'variable.argument.generic.cpp'
+                  '6':
+                    'name': 'operator.character.resolution.cpp;.cpp'
+              }
+              {
+                'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+                'captures':
+                  '1':
+                    'name': 'keyword.qualifier.cpp'
+                  '2':
+                    'name': 'keyword.qualifier.cpp'
+                  '3':
+                    'name': 'keyword.qualifier.cpp'
+                  '4':
+                    'name': 'keyword.qualifier.cpp'
+                  '5':
+                    'name': 'variable.argument.generic.cpp'
+                  '6':
+                    'name': 'keyword.qualifier.cpp'
+                  '7':
+                    'name': 'operator.character.cpp'
+              }
+              {
+                'match': '\\,'
+                'name': 'operator.character.separator.cpp'
+              }
+            ]
+          }
+          {
+            'match': '(\\w+)(\\:\\:)'
+            'captures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'type.name.cpp'
+              '6':
+                'name': 'operator.character.resolution.cpp;.cpp'
+          }
+          {
+            'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+            'captures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'type.name.cpp'
+              '6':
+                'name': 'keyword.qualifier.cpp'
+              '7':
+                'name': 'operator.character.cpp'
+          }
+        ]
+      }
+      {
+        'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+        'captures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'keyword.qualifier.cpp'
+          '7':
+            'name': 'operator.character.cpp'
+      }
+    ]
+  }
+  {
+    'begin': '\\b(namespace)\\b\\s+'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.type.cpp'
+    'end': '\\{'
+    'endCaptures':
+      '0':
+        'name': 'enclosure.block.open.cpp'
+    'name': 'type.declaration.namespace.cpp'
+    'patterns': [
+      {
+        'match': '(\\w+)(\\:\\:)'
+        'captures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'operator.character.resolution.cpp;.cpp'
+      }
+      {
+        'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+        'captures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'keyword.qualifier.cpp'
+          '7':
+            'name': 'operator.character.cpp'
+      }
+    ]
+  }
+  {
+    'begin': '\\b(struct)\\b\\s+'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.type.cpp'
+    'end': '(\\;)|(?=\\{)'
+    'endCaptures':
+      '1':
+        'name': 'operator.character.line-terminator.cpp'
+      '2':
+        'name': 'enclosure.block.open.cpp'
+    'name': 'type.declaration.struct.cpp'
+    'patterns': [
+      {
+        'begin': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?\\s*\\b(\\w+)\\b(\\<)'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'enclosure.generic.open.cpp'
+        'end': '(\\>)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+        'endCaptures':
+          '1':
+            'name': 'enclosure.generic.close.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'operator.character.cpp'
+        'patterns': [
+          {
+            'match': '(\\w+)(\\:\\:)'
+            'captures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'variable.argument.generic.cpp'
+              '6':
+                'name': 'operator.character.resolution.cpp;.cpp'
+          }
+          {
+            'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+            'captures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'variable.argument.generic.cpp'
+              '6':
+                'name': 'keyword.qualifier.cpp'
+              '7':
+                'name': 'operator.character.cpp'
+          }
+          {
+            'match': '\\,'
+            'name': 'operator.character.separator.cpp'
+          }
+        ]
+      }
+      {
+        'match': '(\\w+)(\\:\\:)'
+        'captures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'operator.character.resolution.cpp;.cpp'
+      }
+      {
+        'begin': '(\\w+)\\s*(\\:)\\s*'
+        'beginCaptures':
+          '1':
+            'name': 'type.name.cpp'
+          '2':
+            'name': 'operator.character.inherit.cpp'
+        'end': '(\\,)|(?=\\{)'
+        'endCaptures':
+          '1':
+            'name': 'operator.character.separator.cpp'
+        'patterns': [
+          {
+            'match': 'private|protected|public'
+            'name': 'keyword.qualifier.access.cpp'
+          }
+          {
+            'begin': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?\\s*\\b(\\w+)\\b(\\<)'
+            'beginCaptures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'type.name.cpp'
+              '6':
+                'name': 'enclosure.generic.open.cpp'
+            'end': '(\\>)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+            'endCaptures':
+              '1':
+                'name': 'enclosure.generic.close.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'operator.character.cpp'
+            'patterns': [
+              {
+                'match': '(\\w+)(\\:\\:)'
+                'captures':
+                  '1':
+                    'name': 'keyword.qualifier.cpp'
+                  '2':
+                    'name': 'keyword.qualifier.cpp'
+                  '3':
+                    'name': 'keyword.qualifier.cpp'
+                  '4':
+                    'name': 'keyword.qualifier.cpp'
+                  '5':
+                    'name': 'variable.argument.generic.cpp'
+                  '6':
+                    'name': 'operator.character.resolution.cpp;.cpp'
+              }
+              {
+                'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+                'captures':
+                  '1':
+                    'name': 'keyword.qualifier.cpp'
+                  '2':
+                    'name': 'keyword.qualifier.cpp'
+                  '3':
+                    'name': 'keyword.qualifier.cpp'
+                  '4':
+                    'name': 'keyword.qualifier.cpp'
+                  '5':
+                    'name': 'variable.argument.generic.cpp'
+                  '6':
+                    'name': 'keyword.qualifier.cpp'
+                  '7':
+                    'name': 'operator.character.cpp'
+              }
+              {
+                'match': '\\,'
+                'name': 'operator.character.separator.cpp'
+              }
+            ]
+          }
+          {
+            'match': '(\\w+)(\\:\\:)'
+            'captures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'type.name.cpp'
+              '6':
+                'name': 'operator.character.resolution.cpp;.cpp'
+          }
+          {
+            'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+            'captures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'type.name.cpp'
+              '6':
+                'name': 'keyword.qualifier.cpp'
+              '7':
+                'name': 'operator.character.cpp'
+          }
+        ]
+      }
+      {
+        'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+        'captures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'keyword.qualifier.cpp'
+          '7':
+            'name': 'operator.character.cpp'
+      }
+    ]
+  }
+  {
+    'begin': '(using)\\s+(?:(\\w+)\\s*(\\=)\\s*)?'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.control.cpp'
+      '2':
+        'name': 'variable.alias.cpp'
+      '3':
+        'name': 'operator.character.assignment.cpp'
+    'end': '\\;'
+    'endCaptures':
+      '0':
+        'name': 'operator.character.line-terminator.cpp'
+    'name': 'type.declaration.alias.cpp'
+    'patterns': [
+      {
+        'begin': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?\\s*\\b(\\w+)\\b(\\<)'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'enclosure.generic.open.cpp'
+        'end': '(\\>)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+        'endCaptures':
+          '1':
+            'name': 'enclosure.generic.close.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'operator.character.cpp'
+        'patterns': [
+          {
+            'match': '(\\w+)(\\:\\:)'
+            'captures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'variable.argument.generic.cpp'
+              '6':
+                'name': 'operator.character.resolution.cpp;.cpp'
+          }
+          {
+            'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+            'captures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'variable.argument.generic.cpp'
+              '6':
+                'name': 'keyword.qualifier.cpp'
+              '7':
+                'name': 'operator.character.cpp'
+          }
+          {
+            'match': '\\,'
+            'name': 'operator.character.separator.cpp'
+          }
+        ]
+      }
+      {
+        'match': '(\\w+)(\\:\\:)'
+        'captures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'operator.character.resolution.cpp;.cpp'
+      }
+      {
+        'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+        'captures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'keyword.qualifier.cpp'
+          '7':
+            'name': 'operator.character.cpp'
+      }
+    ]
+  }
+  {
+    'match': '(/\\*\\*)(.*)(\\*\\*/)\\r?\\n'
+    'captures':
+      '1':
+        'name': 'comment.section.open.cpp'
+      '2':
+        'name': 'comment.section.title.cpp'
+      '3':
+        'name': 'comment.section.close.cpp'
+    'name': 'comment.section.cpp'
+  }
+  {
+    'begin': '(/\\*)\\s*([A-Z0-9_]+)\\s*(?=\\-)'
+    'beginCaptures':
+      '1':
+        'name': 'comment.documentation.open.cpp'
+      '2':
+        'name': 'comment.documentation.title.cpp'
+    'contentName': 'comment.documentation.content.cpp'
+    'end': '\\*/'
+    'endCaptures':
+      '0':
+        'name': 'comment.documentation.close.cpp'
+    'patterns': [
+      {
+        'match': 'SYNTAX'
+        'name': 'comment.documentation.syntax.cpp'
+      }
+      {
+        'match': 'OUTPUT[S]?'
+        'name': 'comment.documentation.output.cpp'
+      }
+      {
+        'match': 'INPUT[S]?'
+        'name': 'comment.documentation.input.cpp'
+      }
+      {
+        'match': 'PROPERTY|PROPERTIES'
+        'name': 'comment.documentation.properties.cpp'
+      }
+    ]
+  }
+  {
+    'begin': '(/\\*)'
+    'beginCaptures':
+      '1':
+        'name': 'comment.block.open.cpp'
+    'end': '\\*/'
+    'endCaptures':
+      '0':
+        'name': 'comment.block.close.cpp'
+    'contentName': 'comment.block.content.cpp'
+    'name': 'comment.block.cpp'
+  }
+  {
+    'match': '(//)(.*)\\r?\\n'
+    'captures':
+      '1':
+        'name': 'comment.line.open.cpp'
+      '2':
+        'name': 'comment.line.content.cpp'
+    'name': 'comment.line.cpp'
+  }
+  {
+    'begin': '(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?\\s*\\b(\\w+)\\b(\\<)'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.qualifier.cpp'
+      '2':
+        'name': 'keyword.qualifier.cpp'
+      '3':
+        'name': 'keyword.qualifier.cpp'
+      '4':
+        'name': 'keyword.qualifier.cpp'
+      '5':
+        'name': 'type.name.cpp'
+      '6':
+        'name': 'enclosure.generic.open.cpp'
+    'end': '(\\;)|(\\{)'
+    'endCaptures':
+      '1':
+        'name': 'operator.character.line-terminator.cpp'
+      '2':
+        'name': 'enclosure.block.open.cpp'
+    'name': 'function.declaration.generic.cpp'
+    'patterns': [
+      {
+        'match': '(\\w+)(\\:\\:)'
+        'captures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'variable.argument.generic.cpp'
+          '6':
+            'name': 'operator.character.resolution.cpp;.cpp'
+      }
+      {
+        'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+        'captures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'variable.argument.generic.cpp'
+          '6':
+            'name': 'keyword.qualifier.cpp'
+          '7':
+            'name': 'operator.character.cpp'
+      }
+      {
+        'match': '\\,'
+        'name': 'operator.character.separator.cpp'
+      }
+      {
+        'begin': '(\\>)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*(\\w+)\\s*(\\()\\s*'
+        'beginCaptures':
+          '1':
+            'name': 'enclosure.generic.close.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'operator.character.cpp'
+          '4':
+            'name': 'function.name.cpp'
+          '5':
+            'name': 'enclosure.group.open.cpp'
+        'end': '(\\))(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?'
+        'endCaptures':
+          '1':
+            'name': 'enclosure.group.close.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'keyword.qualifier.cpp'
+        'patterns': [
+          {
+            'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:(long|short|signed|unsigned)\\s+)?(auto|bool|char|double|float|int|long|nullptr|short|string|uchar|uint|ulong|void)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+            'captures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'keyword.qualifier.cpp'
+              '6':
+                'name': 'type.primitive.cpp'
+              '7':
+                'name': 'keyword.qualifier.cpp'
+              '8':
+                'name': 'operator.character.cpp'
+              '9':
+                'name': 'variable.argument.input.cpp'
+            'name': 'function.argument.input.cpp'
+          }
+          {
+            'begin': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(\\:\\:)'
+            'beginCaptures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'type.name.cpp'
+              '6':
+                'name': 'operator.character.resolution.cpp'
+            'end': '(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+            'endCaptures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'operator.character.cpp'
+              '3':
+                'name': 'variable.argument.input.cpp'
+            'name': 'function.argument.input.cpp'
+            'patterns': [
+              {
+                'match': '(\\w+)(\\:\\:)'
+                'captures':
+                  '1':
+                    'name': 'type.name.cpp'
+                  '2':
+                    'name': 'operator.character.resolution.cpp'
+              }
+              {
+                'match': '(\\w+)'
+                'captures':
+                  '1':
+                    'name': 'type.name.cpp'
+              }
+            ]
+          }
+          {
+            'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+            'captures':
+              '0':
+                'name': 'function.argument.input.cpp'
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'type.name.cpp'
+              '6':
+                'name': 'keyword.qualifier.cpp'
+              '7':
+                'name': 'operator.character.cpp'
+              '8':
+                'name': 'variable.argument.input.cpp'
+          }
+          {
+            'match': '\\,'
+            'name': 'operator.character.separator.cpp'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'match': '(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:(long|short|signed|unsigned)\\s+)?(auto|bool|char|double|float|int|long|nullptr|short|string|uchar|uint|ulong|void)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b\\s*(\\()\\s*(void)?\\s*(\\))(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?'
+    'captures':
+      '0':
+        'name': 'function.declaration.primitive.no-input.cpp'
+      '1':
+        'name': 'keyword.qualifier.cpp'
+      '2':
+        'name': 'keyword.qualifier.cpp'
+      '3':
+        'name': 'keyword.qualifier.cpp'
+      '4':
+        'name': 'keyword.qualifier.cpp'
+      '5':
+        'name': 'keyword.qualifier.cpp'
+      '6':
+        'name': 'type.primitive.cpp'
+      '7':
+        'name': 'keyword.qualifier.cpp'
+      '8':
+        'name': 'operator.character.cpp'
+      '9':
+        'name': 'function.name.cpp'
+      '10':
+        'name': 'enclosure.group.open.cpp'
+      '11':
+        'name': 'type.primitive.cpp'
+      '12':
+        'name': 'enclosure.group.close.cpp'
+      '13':
+        'name': 'keyword.qualifier.cpp'
+      '14':
+        'name': 'keyword.qualifier.cpp'
+      '15':
+        'name': 'keyword.qualifier.cpp'
+      '16':
+        'name': 'keyword.qualifier.cpp'
+  }
+  {
+    'begin': '(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:(long|short|signed|unsigned)\\s+)?(auto|bool|char|double|float|int|long|nullptr|short|string|uchar|uint|ulong|void)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b\\s*(\\()\\s*'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.qualifier.cpp'
+      '2':
+        'name': 'keyword.qualifier.cpp'
+      '3':
+        'name': 'keyword.qualifier.cpp'
+      '4':
+        'name': 'keyword.qualifier.cpp'
+      '5':
+        'name': 'keyword.qualifier.cpp'
+      '6':
+        'name': 'type.primitive.cpp'
+      '7':
+        'name': 'keyword.qualifier.cpp'
+      '8':
+        'name': 'operator.character.cpp'
+      '9':
+        'name': 'function.name.cpp'
+      '10':
+        'name': 'enclosure.group.open.cpp'
+    'end': '(\\))(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?'
+    'endCaptures':
+      '1':
+        'name': 'enclosure.group.close.cpp'
+      '2':
+        'name': 'keyword.qualifier.cpp'
+      '3':
+        'name': 'keyword.qualifier.cpp'
+      '4':
+        'name': 'keyword.qualifier.cpp'
+      '5':
+        'name': 'keyword.qualifier.cpp'
+    'name': 'function.declaration.primitive.cpp'
+    'patterns': [
+      {
+        'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:(long|short|signed|unsigned)\\s+)?(auto|bool|char|double|float|int|long|nullptr|short|string|uchar|uint|ulong|void)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+        'captures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'keyword.qualifier.cpp'
+          '6':
+            'name': 'type.primitive.cpp'
+          '7':
+            'name': 'keyword.qualifier.cpp'
+          '8':
+            'name': 'operator.character.cpp'
+          '9':
+            'name': 'variable.argument.input.cpp'
+        'name': 'function.argument.input.cpp'
+      }
+      {
+        'begin': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(\\:\\:)'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'operator.character.resolution.cpp'
+        'end': '(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+        'endCaptures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'operator.character.cpp'
+          '3':
+            'name': 'variable.argument.input.cpp'
+        'name': 'function.argument.input.cpp'
+        'patterns': [
+          {
+            'match': '(\\w+)(\\:\\:)'
+            'captures':
+              '1':
+                'name': 'type.name.cpp'
+              '2':
+                'name': 'operator.character.resolution.cpp'
+          }
+          {
+            'match': '(\\w+)'
+            'captures':
+              '1':
+                'name': 'type.name.cpp'
+          }
+        ]
+      }
+      {
+        'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+        'captures':
+          '0':
+            'name': 'function.argument.input.cpp'
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'keyword.qualifier.cpp'
+          '7':
+            'name': 'operator.character.cpp'
+          '8':
+            'name': 'variable.argument.input.cpp'
+      }
+      {
+        'match': '\\,'
+        'name': 'operator.character.separator.cpp'
+      }
+    ]
+  }
+  {
+    'begin': '(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(\\w+)(\\:\\:)'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.qualifier.cpp'
+      '2':
+        'name': 'keyword.qualifier.cpp'
+      '3':
+        'name': 'keyword.qualifier.cpp'
+      '4':
+        'name': 'keyword.qualifier.cpp'
+      '5':
+        'name': 'type.name.cpp'
+      '6':
+        'name': 'operator.character.resolution.cpp'
+    'end': '(?<=[;{])'
+    'name': 'function.declaration.qualified.cpp'
+    'patterns': [
+      {
+        'match': '(\\w+)(\\:\\:)'
+        'captures':
+          '1':
+            'name': 'type.name.cpp'
+          '2':
+            'name': 'operator.character.resolution.cpp'
+      }
+      {
+        'begin': '(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?\\s*\\b(\\w+)\\b(\\<)'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'enclosure.generic.open.cpp'
+        'end': '(\\;)|(\\{)'
+        'endCaptures':
+          '1':
+            'name': 'operator.character.line-terminator.cpp'
+          '2':
+            'name': 'enclosure.block.open.cpp'
+        'name': 'function.declaration.generic.cpp'
+        'patterns': [
+          {
+            'match': '(\\w+)(\\:\\:)'
+            'captures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'variable.argument.generic.cpp'
+              '6':
+                'name': 'operator.character.resolution.cpp;.cpp'
+          }
+          {
+            'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?'
+            'captures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'variable.argument.generic.cpp'
+              '6':
+                'name': 'keyword.qualifier.cpp'
+              '7':
+                'name': 'operator.character.cpp'
+          }
+          {
+            'match': '\\,'
+            'name': 'operator.character.separator.cpp'
+          }
+          {
+            'begin': '(\\>)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*(\\w+)\\s*(\\()\\s*'
+            'beginCaptures':
+              '1':
+                'name': 'enclosure.generic.close.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'operator.character.cpp'
+              '4':
+                'name': 'function.name.cpp'
+              '5':
+                'name': 'enclosure.group.open.cpp'
+            'end': '(\\))(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?'
+            'endCaptures':
+              '1':
+                'name': 'enclosure.group.close.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'keyword.qualifier.cpp'
+            'patterns': [
+              {
+                'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:(long|short|signed|unsigned)\\s+)?(auto|bool|char|double|float|int|long|nullptr|short|string|uchar|uint|ulong|void)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+                'captures':
+                  '1':
+                    'name': 'keyword.qualifier.cpp'
+                  '2':
+                    'name': 'keyword.qualifier.cpp'
+                  '3':
+                    'name': 'keyword.qualifier.cpp'
+                  '4':
+                    'name': 'keyword.qualifier.cpp'
+                  '5':
+                    'name': 'keyword.qualifier.cpp'
+                  '6':
+                    'name': 'type.primitive.cpp'
+                  '7':
+                    'name': 'keyword.qualifier.cpp'
+                  '8':
+                    'name': 'operator.character.cpp'
+                  '9':
+                    'name': 'variable.argument.input.cpp'
+                'name': 'function.argument.input.cpp'
+              }
+              {
+                'begin': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(\\:\\:)'
+                'beginCaptures':
+                  '1':
+                    'name': 'keyword.qualifier.cpp'
+                  '2':
+                    'name': 'keyword.qualifier.cpp'
+                  '3':
+                    'name': 'keyword.qualifier.cpp'
+                  '4':
+                    'name': 'keyword.qualifier.cpp'
+                  '5':
+                    'name': 'type.name.cpp'
+                  '6':
+                    'name': 'operator.character.resolution.cpp'
+                'end': '(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+                'endCaptures':
+                  '1':
+                    'name': 'keyword.qualifier.cpp'
+                  '2':
+                    'name': 'operator.character.cpp'
+                  '3':
+                    'name': 'variable.argument.input.cpp'
+                'name': 'function.argument.input.cpp'
+                'patterns': [
+                  {
+                    'match': '(\\w+)(\\:\\:)'
+                    'captures':
+                      '1':
+                        'name': 'type.name.cpp'
+                      '2':
+                        'name': 'operator.character.resolution.cpp'
+                  }
+                  {
+                    'match': '(\\w+)'
+                    'captures':
+                      '1':
+                        'name': 'type.name.cpp'
+                  }
+                ]
+              }
+              {
+                'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+                'captures':
+                  '0':
+                    'name': 'function.argument.input.cpp'
+                  '1':
+                    'name': 'keyword.qualifier.cpp'
+                  '2':
+                    'name': 'keyword.qualifier.cpp'
+                  '3':
+                    'name': 'keyword.qualifier.cpp'
+                  '4':
+                    'name': 'keyword.qualifier.cpp'
+                  '5':
+                    'name': 'type.name.cpp'
+                  '6':
+                    'name': 'keyword.qualifier.cpp'
+                  '7':
+                    'name': 'operator.character.cpp'
+                  '8':
+                    'name': 'variable.argument.input.cpp'
+              }
+              {
+                'match': '\\,'
+                'name': 'operator.character.separator.cpp'
+              }
+            ]
+          }
+        ]
+      }
+      {
+        'begin': '(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b\\s*(\\()\\s*'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'keyword.qualifier.cpp'
+          '7':
+            'name': 'operator.character.cpp'
+          '8':
+            'name': 'function.name.cpp'
+          '9':
+            'name': 'enclosure.group.open.cpp'
+        'end': '(\\))(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?'
+        'endCaptures':
+          '1':
+            'name': 'enclosure.group.close.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'keyword.qualifier.cpp'
+        'name': 'function.declaration.simple.cpp'
+        'patterns': [
+          {
+            'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:(long|short|signed|unsigned)\\s+)?(auto|bool|char|double|float|int|long|nullptr|short|string|uchar|uint|ulong|void)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+            'captures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'keyword.qualifier.cpp'
+              '6':
+                'name': 'type.primitive.cpp'
+              '7':
+                'name': 'keyword.qualifier.cpp'
+              '8':
+                'name': 'operator.character.cpp'
+              '9':
+                'name': 'variable.argument.input.cpp'
+            'name': 'function.argument.input.cpp'
+          }
+          {
+            'begin': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(\\:\\:)'
+            'beginCaptures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'type.name.cpp'
+              '6':
+                'name': 'operator.character.resolution.cpp'
+            'end': '(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+            'endCaptures':
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'operator.character.cpp'
+              '3':
+                'name': 'variable.argument.input.cpp'
+            'name': 'function.argument.input.cpp'
+            'patterns': [
+              {
+                'match': '(\\w+)(\\:\\:)'
+                'captures':
+                  '1':
+                    'name': 'type.name.cpp'
+                  '2':
+                    'name': 'operator.character.resolution.cpp'
+              }
+              {
+                'match': '(\\w+)'
+                'captures':
+                  '1':
+                    'name': 'type.name.cpp'
+              }
+            ]
+          }
+          {
+            'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+            'captures':
+              '0':
+                'name': 'function.argument.input.cpp'
+              '1':
+                'name': 'keyword.qualifier.cpp'
+              '2':
+                'name': 'keyword.qualifier.cpp'
+              '3':
+                'name': 'keyword.qualifier.cpp'
+              '4':
+                'name': 'keyword.qualifier.cpp'
+              '5':
+                'name': 'type.name.cpp'
+              '6':
+                'name': 'keyword.qualifier.cpp'
+              '7':
+                'name': 'operator.character.cpp'
+              '8':
+                'name': 'variable.argument.input.cpp'
+          }
+          {
+            'match': '\\,'
+            'name': 'operator.character.separator.cpp'
+          }
+        ]
+      }
+    ]
+  }
+  {
+    'match': '(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b\\s*(\\()\\s*(void)?\\s*(\\))(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?'
+    'captures':
+      '0':
+        'name': 'function.declaration.simple.no-input.cpp'
+      '1':
+        'name': 'keyword.qualifier.cpp'
+      '2':
+        'name': 'keyword.qualifier.cpp'
+      '3':
+        'name': 'keyword.qualifier.cpp'
+      '4':
+        'name': 'keyword.qualifier.cpp'
+      '5':
+        'name': 'type.name.cpp'
+      '6':
+        'name': 'keyword.qualifier.cpp'
+      '7':
+        'name': 'operator.character.cpp'
+      '8':
+        'name': 'function.name.cpp'
+      '9':
+        'name': 'enclosure.group.open.cpp'
+      '10':
+        'name': 'type.primitive.cpp'
+      '11':
+        'name': 'enclosure.group.close.cpp'
+      '12':
+        'name': 'keyword.qualifier.cpp'
+      '13':
+        'name': 'keyword.qualifier.cpp'
+      '14':
+        'name': 'keyword.qualifier.cpp'
+      '15':
+        'name': 'keyword.qualifier.cpp'
+  }
+  {
+    'begin': '(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b\\s*(\\()\\s*'
+    'beginCaptures':
+      '1':
+        'name': 'keyword.qualifier.cpp'
+      '2':
+        'name': 'keyword.qualifier.cpp'
+      '3':
+        'name': 'keyword.qualifier.cpp'
+      '4':
+        'name': 'keyword.qualifier.cpp'
+      '5':
+        'name': 'type.name.cpp'
+      '6':
+        'name': 'keyword.qualifier.cpp'
+      '7':
+        'name': 'operator.character.cpp'
+      '8':
+        'name': 'function.name.cpp'
+      '9':
+        'name': 'enclosure.group.open.cpp'
+    'end': '(\\))(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?(?:\\s+(const|final|override))?'
+    'endCaptures':
+      '1':
+        'name': 'enclosure.group.close.cpp'
+      '2':
+        'name': 'keyword.qualifier.cpp'
+      '3':
+        'name': 'keyword.qualifier.cpp'
+      '4':
+        'name': 'keyword.qualifier.cpp'
+      '5':
+        'name': 'keyword.qualifier.cpp'
+    'name': 'function.declaration.simple.cpp'
+    'patterns': [
+      {
+        'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:(long|short|signed|unsigned)\\s+)?(auto|bool|char|double|float|int|long|nullptr|short|string|uchar|uint|ulong|void)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+        'captures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'keyword.qualifier.cpp'
+          '6':
+            'name': 'type.primitive.cpp'
+          '7':
+            'name': 'keyword.qualifier.cpp'
+          '8':
+            'name': 'operator.character.cpp'
+          '9':
+            'name': 'variable.argument.input.cpp'
+        'name': 'function.argument.input.cpp'
+      }
+      {
+        'begin': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(\\:\\:)'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'operator.character.resolution.cpp'
+        'end': '(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+        'endCaptures':
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'operator.character.cpp'
+          '3':
+            'name': 'variable.argument.input.cpp'
+        'name': 'function.argument.input.cpp'
+        'patterns': [
+          {
+            'match': '(\\w+)(\\:\\:)'
+            'captures':
+              '1':
+                'name': 'type.name.cpp'
+              '2':
+                'name': 'operator.character.resolution.cpp'
+          }
+          {
+            'match': '(\\w+)'
+            'captures':
+              '1':
+                'name': 'type.name.cpp'
+          }
+        ]
+      }
+      {
+        'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b\\s*)?(?:([\\&\\*]+)))?\\s*\\b(\\w+)\\b'
+        'captures':
+          '0':
+            'name': 'function.argument.input.cpp'
+          '1':
+            'name': 'keyword.qualifier.cpp'
+          '2':
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'keyword.qualifier.cpp'
+          '7':
+            'name': 'operator.character.cpp'
+          '8':
+            'name': 'variable.argument.input.cpp'
+      }
+      {
+        'match': '\\,'
+        'name': 'operator.character.separator.cpp'
+      }
+    ]
+  }
+  {
+    'match': '\\b(false|true)\\b'
+    'name': 'literal.boolean.cpp'
+  }
+  {
+    'match': '\\b(\\d*\\.\\d+(?:[eE][\\+\\-]?\\d+)?[lL]?)\\b'
+    'captures':
+      '1':
+        'name': 'literal.float.double.cpp'
+  }
+  {
+    'match': '\\b(\\d*\\.\\d+(?:[eE][\\+\\-]?\\d+)?[fF])\\b'
+    'captures':
+      '1':
+        'name': 'literal.float.single.cpp'
+  }
+  {
+    'match': '\\b(0[xX](?:[0-9]|[a-f]|[A-F])+[lLuU]*)\\b'
+    'captures':
+      '1':
+        'name': 'literal.integer.hexadecimal.cpp'
+  }
+  {
+    'match': '\\b(\\d+[lLuU]*)\\b'
+    'captures':
+      '1':
+        'name': 'literal.integer.decimal.cpp'
+  }
+  {
+    'match': '\\b(0[0-9]+[lLuU]*)\\b'
+    'captures':
+      '1':
+        'name': 'literal.integer.octal.cpp'
+  }
+  {
+    'match': '^\\s*\\#\\s*(?:define)\\s+(\\w+)'
+    'captures':
+      '0':
+        'name': 'preprocessor.define.cpp'
+      '1':
+        'name': 'preprocessor.define.name.cpp'
+  }
+  {
+    'match': '^\\s*\\#\\s*(?:include)\\s+(?:([\\"\\\'][^\\\'\\"]+[\\"\\\'])|(\\<[^\\>]+\\>))'
+    'captures':
+      '0':
+        'name': 'preprocessor.include.cpp'
+      '1':
+        'name': 'preprocessor.include.file.local.cpp'
+      '2':
+        'name': 'preprocessor.include.file.global.cpp'
+  }
+  {
+    'match': '^\\s*\\#\\s*\\w+'
+    'name': 'preprocessor.directive.cpp'
+  }
+  {
+    'match': '(operator)\\s+(\\w+)'
+    'captures':
+      '1':
+        'name': 'keyword.type.cpp'
+      '2':
+        'name': 'type.name.cpp'
+  }
+  {
+    'match': '\\b(class|enum|namespace|operator|struct|template|typedef|typename|union)\\b'
+    'name': 'keyword.type.cpp'
+  }
+  {
+    'match': '\\b(break|case|catch|continue|default|else|for|if|return|switch|try|using|while)\\b'
+    'name': 'keyword.control.cpp'
+  }
+  {
+    'match': '\\b(auto|bool|char|double|float|int|long|nullptr|short|string|uchar|uint|ulong|void)\\b'
+    'name': 'type.primitive.cpp'
+  }
+  {
+    'match': '\\b(const|constexpr|extern|explicit|final|friend|inline|mutable|override|private|protected|public|signed|static|unsigned|virtual|volatile)\\b'
+    'name': 'keyword.qualifier.cpp'
+  }
+  {
+    'match': '(\\,|\\;|\\?|\\~|\\.|\\.\\*|\\:|\\:\\:|\\^|\\^\\=|\\%|\\%\\=|\\=|\\=\\=|\\!|\\!\\=|\\*|\\*\\=|/|/\\=|\\&|\\&\\=|\\&\\&|\\||\\|\\=|\\|\\||\\+|\\+\\=|\\+\\+|\\-|\\-\\=|\\-\\-|\\>|\\>\\=|\\>\\>|\\>\\>\\=|\\<|\\<\\=|\\<\\<|\\<\\<\\=|\\-\\>|\\-\\>\\*)'
+    'name': 'operator.character.cpp'
+  }
+  {
+    'match': '\\b(alignof|delete|new|sizeof|typeid)\\b'
+    'name': 'operator.word.cpp'
+  }
+  {
+    'match': '\\['
+    'name': 'enclosure.index.open.cpp'
+  }
+  {
+    'match': '\\]'
+    'name': 'enclosure.index.close.cpp'
+  }
+  {
+    'match': '\\('
+    'name': 'enclosure.group.open.cpp'
+  }
+  {
+    'match': '\\)'
+    'name': 'enclosure.group.close.cpp'
+  }
+  {
+    'match': '\\{'
+    'name': 'enclosure.block.open.cpp'
+  }
+  {
+    'match': '\\}'
+    'name': 'enclosure.block.close.cpp'
+  }
+]
