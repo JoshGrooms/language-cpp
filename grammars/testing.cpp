@@ -10,7 +10,12 @@ extern virtual const static Name::Space::Test<This, Out, Now> FunctionName(Type1
 extern virtual const static Name::Space::Test FunctionName(Type1**& arg1) const override final;
 
 Name::Space::Type variableName;
-//const static Test<This, Out> TestVariable;
+const static Test<This, Out> TestVariable;
+
+
+using test;
+using test::this;
+using test = testing::this;
 
 
 extern const static Test<This> TestFunction() const;
