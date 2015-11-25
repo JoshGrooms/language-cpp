@@ -25,6 +25,7 @@ RXP =
                 \\b(
                     const       |
                     constexpr   |
+                    explicit    |
                     extern      |
                     inline      |
                     static      |
@@ -36,6 +37,7 @@ RXP =
                 \\b(
                     const       |
                     constexpr   |
+                    explicit    |
                     extern      |
                     inline      |
                     static      |
@@ -47,6 +49,7 @@ RXP =
                 \\b(
                     const       |
                     constexpr   |
+                    explicit    |
                     extern      |
                     inline      |
                     static      |
@@ -58,6 +61,7 @@ RXP =
                 \\b(
                     const       |
                     constexpr   |
+                    explicit    |
                     extern      |
                     inline      |
                     static      |
