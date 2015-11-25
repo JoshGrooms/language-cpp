@@ -1,7 +1,7 @@
 # CHANGELOG
 # Written by Josh Grooms on 20151121
 
-
+# OPERATORS - Captures any valid character-based operators in C and C++.
 operators =
     match:
         ///(
@@ -26,9 +26,9 @@ operators =
 
             \-\> | \-\>\*
         )///
-
     name: 'operator.character.cpp';
 
+# ENCLOSURES - Captures any valid enclosure characters in C and C++.
 enclosures =
     [
         {
