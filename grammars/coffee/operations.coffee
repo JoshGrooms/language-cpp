@@ -12,9 +12,7 @@ operatorWords =
             sizeof  |
             typeid
         )\b///
-
     name: 'operator.word.cpp'
-
 
 # CONTROLSTATEMENTS - Captures certain control statements that would otherwise be incorrectly labeled.
 #
