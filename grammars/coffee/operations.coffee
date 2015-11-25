@@ -15,6 +15,17 @@ operatorWords =
 
     name: 'operator.word.cpp'
 
+
+# CONTROLSTATEMENTS - Captures certain control statements that would otherwise be incorrectly labeled.
+#
+#   This is something of a workaround that's necessary (for now) because, when attempting to capture variable declarations of
+#   simple or primitive types (see exports below), certain keyword operations are incorrectly captured as well. Examples
+#   include 'case' and 'return' statements.
+controlStatements =
+    match: /(case|return)/;
+    captures:
+        1: name: 'keyword.control.cpp';
+
 newOperation =
     begin: /new/;
     beginCaptures: 'operator.word.new.cpp';
@@ -48,7 +59,8 @@ qualification =
 
 module.exports =
 [
+    controlStatements,
     newOperation,
     operatorWords,
-    qualification,
+    # qualification,
 ];
