@@ -258,9 +258,19 @@ Patterns =
             9: name: varName;
         name: groupName;
     # QUALIFIEDTYPE - A pattern that captures any type qualified by the use of the scope resolution operator (i.e. '::').
+    #
+    #   SYNTAX:
+    #       P = Patterns.QualifiedType()
+    #       P = Patterns.QualifiedType(typeName)
+    #
+    #   OUTPUT:
+    #       P:          PATTERN
+    #                   A pattern object that can be used directly with the Atom syntax recognition engine.
+    #   OPTIONAL INPUT:
+    #       typeName:   STRING
+    #                   A name string that classifies any identified qualified type.
     QualifiedType: (typeName = 'type.name.cpp') ->
         match: /// #{RXP.VariableQualifiers} #{RXP.QualifiedType} ///;
-        match: RXP.QualifiedType;
         captures:
             1: name: 'keyword.qualifier.cpp';
             2: name: 'keyword.qualifier.cpp';
@@ -283,14 +293,12 @@ Patterns =
             5: name: 'type.name.cpp';
             6: name: 'operator.character.resolution.cpp'
         end:
-            ///
-                #{RXP.PointerOperation}
-                \s* \b(\w+)\b
-            ///;
+            '''
+                (?<= [\\&\\*\\s] )
+                \\b(\\w+)\\b
+            '''.deblank();
         endCaptures:
-            1: name: 'keyword.qualifier.cpp';
-            2: name: 'operator.character.cpp';
-            3: name: varName;
+            1: name: varName;
         name: groupName;
         patterns:
             [
