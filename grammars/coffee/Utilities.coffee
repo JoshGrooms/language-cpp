@@ -7,8 +7,18 @@
 String::deblank = ->
     return @replace(/(\s*|\r|\n)/gm, '');
 
-# RXP - A collection of regular expression patterns for common C++ elements.
+
+
+
+# RXP - A collection of regular expression patterns for common C++ code elements.
 RXP =
+
+    # FUNCTIONQUALIFIERS - An expression for any qualifier keywords that appear at the beginning of a function declaration.
+    #
+    #   The hacky copy-paste job seen below is an attempt to stop the insane pattern branching that has been occurring within
+    #   this project. As it turns out, C++ has an incredible number of possible legal permutations for things like function
+    #   or class method declarations, so in cases like this I've been trying to limit the use of subpatterns in the regular
+    #   expression recognition engine. It's ugly, but it's simple and does its job.
     FunctionQualifiers:
         '''
             (?:
@@ -65,6 +75,7 @@ RXP =
             \\b(\\w+)\\b
             \\s* (\\() \\s*
         '''.deblank();
+    # FUNCTIONSUFFIXQUALIFIERS - An expression for any qualifier keywords that appear at the end of a function declaration.
     FunctionSuffixQualifiers:
         '''
             (?:
@@ -100,6 +111,7 @@ RXP =
                 )
             )?
         '''.deblank();
+    # POINTEROPERATION - An expression for any pointer or reference operator uses in C++.
     PointerOperation:
         '''
             (?:
@@ -107,6 +119,7 @@ RXP =
                 (?: \\s* ([\\&\\*]+) )
             )?
         '''.deblank();
+    # PRIMITIVETYPE - An expression for any primitive type statements made in C++.
     PrimitiveType:
         '''
             (?:
@@ -135,11 +148,13 @@ RXP =
                 void
             )\\b
         '''.deblank();
+    # QUALIFIEDTYPE - An expression for any type in C++ that uses the scope resolution ('::') operator.
     QualifiedType:
         '''
             (\\w+)
             (\\:\\:)
         '''.deblank();
+    # VARIABLEQUALIFIERS - An expression for any qualifier keywords that can be attached to variables in C++.
     VariableQualifiers:
         '''
             (?:
@@ -183,27 +198,15 @@ RXP =
                 \\s+
             )?
         '''.deblank();
-
+    # SIMPLETYPE - An expression for any simple, non-primitive, unqualified type in C++.
     SimpleType:
         '''
             (\\w+)
         '''.deblank();
 
-
+# PATTERNS - A collection of syntax pattern objects that capture common C++ code elements.
 Patterns =
-
-    FunctionArguments: ->
-        return
-        {
-            begin: /\(/;
-            beginCaptures:
-                0: name: 'enclosure.group.open.cpp';
-            end: /\)/;
-            endCaptures:
-                0: name: 'enclosure.group.close.cpp';
-            patterns: [ GenericVariable('variable.argument.input.cpp'), PrimitiveVariable ];
-        };
-
+    # FUNCTIONQUALIFIERS - A pattern for any qualifier keywords that appear at the beginning of a fucntion delcaration.
     FunctionQualifiers:
         match: RXP.FunctionQualifiers;
         captures:
@@ -289,8 +292,13 @@ Patterns =
             2: name: 'operator.character.cpp';
             3: name: varName;
         name: groupName;
-        patterns: [ Patterns.QualifiedType(), Patterns.SimpleType() ];
-
+        patterns:
+            [
+                Patterns.GenericType(),
+                Patterns.QualifiedType(),
+                Patterns.SimpleType()
+            ];
+    # SIMPLETYPE - A pattern that captures any simple, non-primitive, unqualified type in C++.
     SimpleType: (typeName = 'type.name.cpp') ->
         match: /// #{RXP.VariableQualifiers} #{RXP.SimpleType} #{RXP.PointerOperation} ///;
         captures:
@@ -301,7 +309,7 @@ Patterns =
             5: name: typeName;
             6: name: 'keyword.qualifier.cpp';
             7: name: 'operator.character.cpp';
-
+    # SIMPLEVARIABLE - A pattern that captures any variable declaration containing a simple type.
     SimpleVariable: (varType = 'variable.name.cpp', groupType = 'variable.declaration.simple.cpp') ->
         match:
             ///
@@ -320,7 +328,7 @@ Patterns =
             6: name: 'keyword.qualifier.cpp';
             7: name: 'operator.character.cpp';
             8: name: varType;
-
+    # VARIABLEQUALIFIERS - A pattern that captures any qualifier keywords that might be attached to a variable declaration.
     VariableQualifiers:
         match: RXP.VariableQualifiers;
         captures:
