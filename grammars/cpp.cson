@@ -900,7 +900,7 @@
     ]
   }
   {
-    'begin': '(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?\\s*\\b(\\w+)\\b(\\<)'
+    'begin': '(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?\\s*\\b(\\w+)\\b(\\<)'
     'beginCaptures':
       '1':
         'name': 'keyword.qualifier.cpp'
@@ -914,12 +914,14 @@
         'name': 'type.name.cpp'
       '6':
         'name': 'enclosure.generic.open.cpp'
-    'end': '(\\;)|(\\{)'
+    'end': '(\\;)|(\\{)|(\\()'
     'endCaptures':
       '1':
         'name': 'operator.character.line-terminator.cpp'
       '2':
         'name': 'enclosure.block.open.cpp'
+      '3':
+        'name': 'enclosure.group.open.cpp'
     'name': 'function.declaration.generic.cpp'
     'patterns': [
       {
@@ -1163,7 +1165,7 @@
         ]
       }
       {
-        'match': '(\\>)(?:(?:\\b(const)\\b)?(?:\\s*([\\&\\*]+)))?\\s*(\\w+)\\s*'
+        'match': '(\\>)(?:(?:\\b(const)\\b)?(?:\\s*([\\&\\*]+)))?\\s*\\b(\\w+)\\b\\s*'
         'captures':
           '1':
             'name': 'enclosure.generic.close.cpp'
@@ -1174,10 +1176,36 @@
           '4':
             'name': 'variable.name.cpp'
       }
+      {
+        'match': '(\\>)(\\:\\:)(\\w+)\\s*(\\w+)'
+        'captures':
+          '1':
+            'name': 'enclosure.generic.close.cpp'
+          '2':
+            'name': 'operator.character.resolution.cpp'
+          '3':
+            'name': 'type.name.cpp'
+          '4':
+            'name': 'variable.name.cpp'
+      }
+      {
+        'match': '(\\>)(\\:\\:)(\\w+)'
+        'captures':
+          '1':
+            'name': 'enclosure.generic.close.cpp'
+          '2':
+            'name': 'operator.character.resolution.cpp'
+          '3':
+            'name': 'type.name.cpp'
+      }
+      {
+        'match': '(\\>)'
+        'name': 'enclosure.generic.close.cpp'
+      }
     ]
   }
   {
-    'begin': '(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(long|short|signed|unsigned)\\b\\s+)?\\b(auto|bool|char|double|float|int|long|nullptr|short|string|uchar|uint|ulong|void)\\b(?:(?:\\b(const)\\b)?(?:\\s*([\\&\\*]+)))?\\s*(?:\\b(\\w+)\\b(\\:\\:))?\\b(\\w+)\\b\\s*(\\()\\s*'
+    'begin': '(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(long|short|signed|unsigned)\\b\\s+)?\\b(auto|bool|char|double|float|int|long|nullptr|short|string|uchar|uint|ulong|void)\\b(?:(?:\\b(const)\\b)?(?:\\s*([\\&\\*]+)))?\\s*(?:\\b(\\w+)\\b(\\:\\:))?\\b(\\w+)\\b\\s*(\\()\\s*'
     'beginCaptures':
       '1':
         'name': 'keyword.qualifier.cpp'
@@ -1408,7 +1436,7 @@
     ]
   }
   {
-    'begin': '(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(\\w+)(\\:\\:)'
+    'begin': '(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(\\w+)(\\:\\:)'
     'beginCaptures':
       '1':
         'name': 'keyword.qualifier.cpp'
@@ -1422,24 +1450,34 @@
         'name': 'type.name.cpp'
       '6':
         'name': 'operator.character.resolution.cpp'
-    'end': '(?<=[;{])|(;)|({)'
+    'end': '(?<=[\\;\\{\\:])|(\\;)|(\\{)|(?:(\\:)(?![\\:]))'
     'endCaptures':
       '1':
         'name': 'operator.character.line-terminator.cpp'
       '2':
         'name': 'enclosure.block.open.cpp'
+      '3':
+        'name': 'operator.character.initializer.cpp'
     'name': 'function.declaration.qualified.cpp'
     'patterns': [
       {
-        'match': '(\\w+)(\\:\\:)'
+        'match': '(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(?:\\b(const|extern|mutable|static|volatile)\\b\\s+)?(\\w+)(\\:\\:)'
         'captures':
           '1':
-            'name': 'type.name.cpp'
+            'name': 'keyword.qualifier.cpp'
           '2':
-            'name': 'operator.character.resolution.cpp'
+            'name': 'keyword.qualifier.cpp'
+          '3':
+            'name': 'keyword.qualifier.cpp'
+          '4':
+            'name': 'keyword.qualifier.cpp'
+          '5':
+            'name': 'type.name.cpp'
+          '6':
+            'name': 'operator.character.resolution.cpp;.cpp'
       }
       {
-        'begin': '(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?\\s*\\b(\\w+)\\b(\\<)'
+        'begin': '(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?\\s*\\b(\\w+)\\b(\\<)'
         'beginCaptures':
           '1':
             'name': 'keyword.qualifier.cpp'
@@ -1453,12 +1491,14 @@
             'name': 'type.name.cpp'
           '6':
             'name': 'enclosure.generic.open.cpp'
-        'end': '(\\;)|(\\{)'
+        'end': '(\\;)|(\\{)|(\\()'
         'endCaptures':
           '1':
             'name': 'operator.character.line-terminator.cpp'
           '2':
             'name': 'enclosure.block.open.cpp'
+          '3':
+            'name': 'enclosure.group.open.cpp'
         'name': 'function.declaration.generic.cpp'
         'patterns': [
           {
@@ -1702,7 +1742,7 @@
             ]
           }
           {
-            'match': '(\\>)(?:(?:\\b(const)\\b)?(?:\\s*([\\&\\*]+)))?\\s*(\\w+)\\s*'
+            'match': '(\\>)(?:(?:\\b(const)\\b)?(?:\\s*([\\&\\*]+)))?\\s*\\b(\\w+)\\b\\s*'
             'captures':
               '1':
                 'name': 'enclosure.generic.close.cpp'
@@ -1713,10 +1753,36 @@
               '4':
                 'name': 'variable.name.cpp'
           }
+          {
+            'match': '(\\>)(\\:\\:)(\\w+)\\s*(\\w+)'
+            'captures':
+              '1':
+                'name': 'enclosure.generic.close.cpp'
+              '2':
+                'name': 'operator.character.resolution.cpp'
+              '3':
+                'name': 'type.name.cpp'
+              '4':
+                'name': 'variable.name.cpp'
+          }
+          {
+            'match': '(\\>)(\\:\\:)(\\w+)'
+            'captures':
+              '1':
+                'name': 'enclosure.generic.close.cpp'
+              '2':
+                'name': 'operator.character.resolution.cpp'
+              '3':
+                'name': 'type.name.cpp'
+          }
+          {
+            'match': '(\\>)'
+            'name': 'enclosure.generic.close.cpp'
+          }
         ]
       }
       {
-        'begin': '(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b)?(?:\\s*([\\&\\*]+)))?\\s*(?:\\b(\\w+)\\b(\\:\\:))?\\b(\\w+)\\b\\s*(\\()\\s*'
+        'begin': '(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b)?(?:\\s*([\\&\\*]+)))?\\s*(?:\\b(\\w+)\\b(\\:\\:))?\\b(\\w+)\\b\\s*(\\()\\s*'
         'beginCaptures':
           '1':
             'name': 'keyword.qualifier.cpp'
@@ -1951,7 +2017,7 @@
     ]
   }
   {
-    'begin': '(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|extern|inline|static|virtual)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b)?(?:\\s*([\\&\\*]+)))?\\s*(?:\\b(\\w+)\\b(\\:\\:))?\\b(\\w+)\\b\\s*(\\()\\s*'
+    'begin': '(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(?:\\b(const|constexpr|explicit|extern|inline|static|virtual)\\b\\s+)?(\\w+)(?:(?:\\b(const)\\b)?(?:\\s*([\\&\\*]+)))?\\s*(?:\\b(\\w+)\\b(\\:\\:))?\\b(\\w+)\\b\\s*(\\()\\s*'
     'beginCaptures':
       '1':
         'name': 'keyword.qualifier.cpp'
@@ -2160,6 +2226,32 @@
         'name': 'operator.character.separator.cpp'
       }
     ]
+  }
+  {
+    'match': '(operator)\\s+(?:\\b(long|short|signed|unsigned)\\b\\s+)?\\b(auto|bool|char|double|float|int|long|nullptr|short|string|uchar|uint|ulong|void)\\b'
+    'captures':
+      '1':
+        'name': 'keyword.qualifier.cpp'
+      '2':
+        'name': 'keyword.qualifier.cpp'
+      '3':
+        'name': 'keyword.qualifier.cpp'
+      '4':
+        'name': 'keyword.qualifier.cpp'
+      '5':
+        'name': 'keyword.qualifier.cpp'
+      '6':
+        'name': 'keyword.qualifier.cpp'
+      '7':
+        'name': 'type.primitive.cpp'
+      '8':
+        'name': 'keyword.qualifier.cpp'
+      '9':
+        'name': 'operator.character.cpp'
+      '10':
+        'name': 'keyword.qualifier.cpp'
+      '11':
+        'name': 'operator.character.cpp'
   }
   {
     'match': '(operator)\\s+(\\w+)'
