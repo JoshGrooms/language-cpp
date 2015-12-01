@@ -3,7 +3,6 @@
 
 
 
-
 keywordDeclarations =
     match:
         ///\b(
@@ -34,6 +33,7 @@ keywordControls =
             return      |
             switch      |
             this        |
+            throw       |
             try         |
             using       |
             while
