@@ -1,6 +1,6 @@
 {
     "name":"language-cpp",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "private": true,
     "description": "Enhanced C++ language support for Atom",
     "repository": "https://github.com/JoshGrooms/language-cpp.git",
@@ -10,7 +10,5 @@
         "node": "*"
     },
     "dependencies": {},
-    "devDependencies": {
-        "atom-syntax-tools": "^0.9.1"
-    }
+    "devDependencies": { "atom-syntax-tools": "^0.9.1" }
 }
