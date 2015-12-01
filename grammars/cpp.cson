@@ -2311,7 +2311,7 @@
     'name': 'keyword.type.cpp'
   }
   {
-    'match': '\\b(break|case|catch|continue|default|else|for|if|return|switch|this|try|using|while)\\b'
+    'match': '\\b(break|case|catch|continue|default|else|for|if|return|switch|this|throw|try|using|while)\\b'
     'name': 'keyword.control.cpp'
   }
   {
