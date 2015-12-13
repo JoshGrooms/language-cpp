@@ -45,6 +45,9 @@ octals =
     captures:
         1: name: 'literal.integer.octal.cpp';
 
+emptyStrings =
+    match: /[\"\'][\"\']/;
+    name: 'literal.string.cpp';
 
 strings =
     begin: /(L|u8|u|U)?([\"\'])[^\(]/;
@@ -56,4 +59,14 @@ strings =
     name: 'literal.string.cpp';
 
 
-module.exports = [ booleans, doubles, floats, hexadecimals, integers, octals, strings ];
+module.exports =
+    [
+        booleans,
+        doubles,
+        floats,
+        hexadecimals,
+        integers,
+        octals,
+        emptyStrings,
+        strings
+    ];
