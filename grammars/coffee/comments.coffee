@@ -44,6 +44,7 @@ docInput =
 docProperties =
     match: /PROPERTY|PROPERTIES/;
     name: 'comment.documentation.properties.cpp';
+
 # DOCUMENTATION - Captures any documentation comments written according to my personal standard.
 documentation =
     begin: /(\/\*)\s*([A-Z0-9_]+)\s*(?=\-)/;
