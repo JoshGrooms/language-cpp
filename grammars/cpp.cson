@@ -126,6 +126,10 @@
         'name': 'literal.integer.octal.cpp'
   }
   {
+    'match': '[\\"\\\'][\\"\\\']'
+    'name': 'literal.string.cpp'
+  }
+  {
     'begin': '(L|u8|u|U)?([\\"\\\'])[^\\(]'
     'beginCaptures':
       '1':
