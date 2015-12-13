@@ -12,11 +12,20 @@ extern virtual const static Name::Space::Test FunctionName(Type1**& arg1) const 
 Name::Space::Type variableName;
 const static Test<This, Out> TestVariable;
 
+    // Testing this
+        // Another test comment
+
+    /* TEST - Some test documentation comments
+     *
+     *      This is a test documentation comment for some piece of code.
+     *
+     */
 
 using test;
 using test::this;
 using test = testing::this;
 
+auto test = true;
 
 extern const static Test<This> TestFunction() const;
 extern const static Test<This, Out> TestFunction(Type1*& arg1) const;
