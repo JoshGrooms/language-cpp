@@ -4,7 +4,7 @@
 { Patterns, RXP } = require('./Utilities');
 
 anonymousDeclaration =
-    match: /\b(class|struct|enum)\b\s*(?:\r?\n?)(\{)/;
+    match: /\b(class|struct|enum)\b\s*(?:\r?\n)?(\{)/;
     captures:
         1: name: 'keyword.type.cpp';
         2: name: 'operator.block.open.cpp';
@@ -73,6 +73,26 @@ structDeclaration =
             Patterns.SimpleType(),
             classInheritance,
         ];
+
+templateDeclaration =
+    begin: /\b(template)(\<)/;
+    captures:
+        1: name: 'keyword.type.cpp';
+        2: name: 'enclosure.generic.open.cpp';
+    end: /\>/;
+    endCaptures: 'enclosure.generic.close.cpp';
+    patterns:
+        [
+            {
+                match: /(typename|class)\s+(\w+)/;
+                captures:
+                    1: name: 'keyword.type.cpp';
+                    2: name: 'variable.argument.generic.cpp';
+            },
+
+            Patterns.ListSeparator,
+        ];
+
 # USINGDECLARATION - Captures any lines that assign aliases through the 'using' keyword.
 usingDeclaration =
     begin:
@@ -103,5 +123,6 @@ module.exports =
         classDeclaration,
         namespaceDeclaration,
         structDeclaration,
+        templateDeclaration,
         usingDeclaration,
     ];
