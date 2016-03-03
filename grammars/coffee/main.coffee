@@ -4,7 +4,7 @@
 { makeGrammar, rule } = require('atom-syntax-tools');
 
 grammar =
-    fileTypes:      [ 'cpp', 'h', 'hpp' ];
+    fileTypes:      [ 'c', 'cpp', 'h', 'hpp' ];
     name:           'C++';
     scopeName:      'source.cpp';
 
