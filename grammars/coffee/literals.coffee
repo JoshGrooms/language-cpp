@@ -45,19 +45,25 @@ octals =
     captures:
         1: name: 'literal.integer.octal.cpp';
 
-emptyStrings =
-    match: /[\"\'][\"\']/;
-    name: 'literal.string.cpp';
+
+characters =
+    begin: "(?<![^\\\\]\\\\)(\\')"
+    beginCaptures:
+        1: name: 'enclosure.character.open.cpp';
+    contentName: 'literal.character.content.cpp';
+    end: "(?<![^\\\\]\\\\)(\\')"
+    endCaptures: 'enclosure.character.close.cpp';
+    name: 'literal.character.cpp';
 
 strings =
-    begin: /(L|u8|u|U)?([\"\'])[^\(]/;
+    begin: '(L|u8|u|U)?(?<![^\\\\]\\\\)(\\")';
     beginCaptures:
         1: name: 'literal.string.qualifier.cpp';
         2: name: 'enclosure.string.open.cpp';
-    end: /[\"\']/;
+    contentName: 'literal.string.content.cpp';
+    end: '(?<![^\\\\]\\\\)(\\")'
     endCaptures: 'enclosure.string.close.cpp';
     name: 'literal.string.cpp';
-
 
 module.exports =
     [
@@ -67,6 +73,6 @@ module.exports =
         hexadecimals,
         integers,
         octals,
-        emptyStrings,
+        characters,
         strings
     ];
