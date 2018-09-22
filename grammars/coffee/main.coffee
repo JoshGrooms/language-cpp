@@ -4,7 +4,7 @@
 { makeGrammar, rule } = require('atom-syntax-tools');
 
 grammar =
-    fileTypes:      [ 'c', 'cpp', 'h', 'hpp' ];
+    fileTypes:      [ 'c', 'cpp', 'cxx', 'h', 'hpp' ];
     name:           'C++';
     scopeName:      'source.cpp';
 
@@ -15,12 +15,12 @@ grammar =
             require('./comments')
             require('./literals')
 
-            require('./operations')
+            # require('./operations')
 
-            require('./classes')
-            require('./functions')
+            # require('./classes')
+            # require('./functions')
 
-            require('./minutiae')
+            # require('./minutiae')
             require('./keywords')
             require('./operators')
         ];
