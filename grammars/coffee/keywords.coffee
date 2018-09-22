@@ -41,6 +41,17 @@ keywordControls =
 
     name: 'keyword.control.cpp';
 
+keywordOperators =
+    match:
+        ///\b(
+            alignof |
+            delete  |
+            new     |
+            sizeof  |
+            typeid
+        )\b///
+    name: 'keyword.operator.cpp';
+
 keywordPrimitives =
     match:
         ///\b(
@@ -87,4 +98,11 @@ keywordQualifiers =
     name: 'keyword.qualifier.cpp';
 
 
-module.exports = [ keywordDeclarations, keywordControls, keywordPrimitives, keywordQualifiers ];
+module.exports =
+[
+    keywordDeclarations,
+    keywordControls,
+    keywordOperators,
+    keywordPrimitives,
+    keywordQualifiers
+];

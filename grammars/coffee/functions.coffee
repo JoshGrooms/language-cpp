@@ -232,11 +232,39 @@ functionQualifiedReturn =
         ];
 
 
+newFunction =
+    begin:
+        ///
+            (?: (\w+)(\:\:) )?
+            (\w+) \s*
+            (\()
+        ///;
+    captures:
+        1: name: 'type.name.cpp';
+        2: name: 'operator.character.resolution.cpp'
+        3: name: 'function.name.cpp';
+        4: name: 'operator.character.cpp';
+        5: name: 'enclosure.group.open.cpp';
+
+    end: /(\w+)?\s*(\))/;
+    endCaptures:
+        1: name: 'enclosure.group.close.cpp';
+        2: name: 'operator.character.cpp';
+
+    patterns:
+        [
+            {
+                match: /(\w+)\s*(\,)/;
+                captures:
+                    1: name: 'var'
+            }
+
 
 module.exports =
 [
-    functionGenericReturn,
-    functionPrimitiveReturn,
-    functionQualifiedReturn,
-    functionSimpleReturn,
+    # functionGenericReturn,
+    # functionPrimitiveReturn,
+    # functionQualifiedReturn,
+    # functionSimpleReturn,
+    newFunction
 ];
