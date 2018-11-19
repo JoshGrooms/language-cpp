@@ -5,8 +5,8 @@
 
 grammar =
     fileTypes:      [ 'c', 'cpp', 'cxx', 'h', 'hpp' ];
-    name:           'C++';
-    scopeName:      'source.cpp';
+    name:           'C++ Enhanced';
+    scopeName:      'source.c, source.cpp, source.cxx, source.h, source.hpp';
 
     # Ordering is critical here
     patterns:

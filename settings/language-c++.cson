@@ -1,4 +1,4 @@
-'.source.c, .source.cpp':
+'.source.c, .source.cpp, source.cxx, source.h, source.hpp':
     'editor':
         'commentStart': '//'
         'foldEndPattern': '^\\s*\\}'

@@ -5,8 +5,8 @@
   'h'
   'hpp'
 ]
-'name': 'C++'
-'scopeName': 'source.cpp'
+'name': 'C++ Enhanced'
+'scopeName': 'source.cpp, source.h, source.hpp'
 'patterns': [
   {
     'match': '^\\s*\\#\\s*(?:define)\\s+(\\w+)'

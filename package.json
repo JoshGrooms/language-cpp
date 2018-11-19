@@ -1,5 +1,5 @@
 {
-    "name":"language-cpp",
+    "name":"language-cpp-enhanced",
     "version": "1.0.0",
     "private": true,
     "description": "Enhanced C++ language support for Atom",
