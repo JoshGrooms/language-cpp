@@ -258,7 +258,7 @@ newFunction =
                 captures:
                     1: name: 'var'
             }
-
+        ];
 
 module.exports =
 [

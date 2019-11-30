@@ -9,7 +9,6 @@ String::deblank = ->
 
 
 
-
 # RXP - A collection of regular expression patterns for common C++ code elements.
 RXP =
 

@@ -30,3 +30,11 @@ auto test = true;
 extern const static Test<This> TestFunction() const;
 extern const static Test<This, Out> TestFunction(Type1*& arg1) const;
 virtual extern const static int SomeFunctionName() const override final;
+
+
+enum class Testing: int8u
+{
+    Value1,
+    Value2,
+    Value3,
+};

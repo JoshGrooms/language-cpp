@@ -6,7 +6,8 @@
 grammar =
     fileTypes:      [ 'c', 'cpp', 'cxx', 'h', 'hpp' ];
     name:           'C++ Enhanced';
-    scopeName:      'source.c, source.cpp, source.cxx, source.h, source.hpp';
+    # scopeName:      'source.c, source.cpp, source.cxx, source.h, source.hpp';
+    scopeName:      'source.c, source.cpp';
 
     # Ordering is critical here
     patterns:
@@ -17,8 +18,8 @@ grammar =
 
             # require('./operations')
 
-            # require('./classes')
-            # require('./functions')
+            require('./classes')
+            require('./functions')
 
             # require('./minutiae')
             require('./keywords')
